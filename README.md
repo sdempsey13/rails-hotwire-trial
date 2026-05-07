@@ -1,3 +1,28 @@
+# Submission Information
+
+This is my submission to Clever's Rails + Hotwire Coding Interview (details of the task are left in tact below this section.)
+
+---
+
+## Setup
+
+In order to use this repo:
+1. Clone this repository
+2. Run the seed file `bin/rails db:seed`. This populates photos and a user in the database.
+3. Use `bin/rails server` to start the app
+4. Navigate to http://localhost:3000/ 
+5. Log in with the user created from seed user: `test@test.com` password: `password`
+6. Like and unlike any photos - a user can only like a photo once
+
+## Callouts
+
+- Flash messages around log in status use a Stimulus controller to fade after 3 seconds.
+- All pages are mobile responsive.
+- Users liking a photo only once is restricted in the UI by toggling the star logo, but it's also protected by a validation in the rails side and a database uniquenss index on the database side.
+- Likes are implemented as a polymorphic association so we can like other models in the future.
+
+---
+
 # Clever's Rails + Hotwire Coding Interview
 
 Welcome to Clever's full-stack coding challenge. You'll build a small but complete web application using **Ruby on Rails** and **Hotwire** (Turbo + Stimulus). The goal is to assess how you think about Rails conventions, server-rendered interactivity, and clean UI without a heavy JavaScript framework.
