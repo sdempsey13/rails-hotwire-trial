@@ -1,0 +1,9 @@
+<%= turbo_stream.replace "like_#{@photo.id}" do %>
+  <%= turbo_frame_tag "like_#{@photo.id}" do %>
+    <%= button_to photo_like_path(@photo), method: :delete,
+        class: "btn btn-sm p-0 d-flex align-items-center gap-1" do %>
+      <%= image_tag "star-fill.svg", width: 16, height: 16 %>
+      <span class="small"><%= @photo.likes.size %></span>
+    <% end %>
+  <% end %>
+<% end %>

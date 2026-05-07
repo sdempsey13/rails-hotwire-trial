@@ -1,2 +1,34 @@
-<h1>Photos#index</h1>
-<p>Find me in app/views/photos/index.html.erb</p>
+<div class="container py-4">
+  <div class="row row-cols-1 row-cols-md-5 g-3">
+    <% @photos.each do |photo| %>
+      <div class="col">
+        <div class="card h-100">
+          <%= image_tag photo.src_medium, class: "card-img-top", alt: photo.alt %>
+          <div class="card-body p-2">
+            <p class="card-text small mb-1"><%= photo.photographer %></p>
+            <div class="d-flex align-items-center justify-content-between">
+              <%= link_to photo.url, target: "_blank", rel: "noopener" do %>
+                <%= image_tag "links.svg", width: 16, height: 16 %>
+              <% end %>
+              <%= turbo_frame_tag "like_#{photo.id}" do %>
+                <% if photo.likes.any? { |l| l.user_id == current_user.id } %>
+                  <%= button_to photo_like_path(photo), method: :delete, 
+                    class: "btn btn-sm p-0 d-flex align-items-center gap-1" do %>
+                    <%= image_tag "star-fill.svg", width: 16, height: 16 %>
+                    <span class="small"><%= photo.likes.size %></span>
+                  <% end %>
+                <% else %>
+                  <%= button_to photo_like_path(photo), method: :post,
+                    class: "btn btn-sm p-0 d-flex align-items-center gap-1" do %>
+                    <%= image_tag "star-line.svg", width: 16, height: 16 %>
+                    <span class="small"><%= photo.likes.size %></span>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
