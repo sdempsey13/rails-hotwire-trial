@@ -1,6 +1,5 @@
 require 'csv'
 
-
 CSV.foreach(Rails.root.join('photos.csv'), headers: true) do |row|
   Photo.create!(
     photo_id:         row['id'],
@@ -21,4 +20,9 @@ CSV.foreach(Rails.root.join('photos.csv'), headers: true) do |row|
     src_tiny:         row['src.tiny'],
     alt:              row['alt']
   )
+end
+
+User.find_or_create_by!(email: "test@test.com") do |user|
+  user.password = "password"
+  user.password_confirmation = "password"
 end
