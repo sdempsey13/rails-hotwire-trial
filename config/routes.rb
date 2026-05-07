@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "photos#index"
 
-  devise_for :users
+  devise_for :users, controllers: {},
+    skip: [:registrations, :passwords, :confirmations, :unlocks]
 
   resources :photos, only: [:index]
 
